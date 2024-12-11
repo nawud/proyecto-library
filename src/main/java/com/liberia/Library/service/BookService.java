@@ -16,5 +16,12 @@ public class BookService {
     public List<Book> getAll() {
         return IBookRepository.findAll();
     }
+    public void addBook(Book newBook) {
+        IBookRepository.save(newBook);
+    }
 
+    public void deleteBook(Long id) {
+        IBookRepository.deleteById(id);
+
+    }
 }

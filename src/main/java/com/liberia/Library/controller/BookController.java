@@ -2,9 +2,7 @@ package com.liberia.Library.controller;
 
 import com.liberia.Library.model.Book;
 import com.liberia.Library.service.BookService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +18,17 @@ public class BookController {
     @GetMapping("/book")
     public List<Book> getAllBook() {
         return bookService.getAll();
+    }
+
+    @PostMapping("/book")
+    public void createBook (@RequestBody Book newBook) {
+         bookService.addBook(newBook);
+    }
+
+
+    @DeleteMapping("/book/{id}")
+    public void deleteBookByid(@PathVariable Long id) {
+        bookService.deleteBook(id);
     }
 
 }
