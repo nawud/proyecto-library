@@ -63,6 +63,9 @@ public class Loan {
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
+
+    public void setReturnedDate(LocalDate now) {
+    }
 }
 
 

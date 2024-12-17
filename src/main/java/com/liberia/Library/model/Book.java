@@ -74,4 +74,11 @@ public class Book {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    public boolean isAvailable() {
+        return false;
+    }
+
+    public void setAvailable(boolean b) {
+    }
 }
