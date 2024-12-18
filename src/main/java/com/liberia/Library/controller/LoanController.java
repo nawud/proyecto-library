@@ -52,10 +52,12 @@ public class LoanController {
             return ResponseEntity.notFound().build();
         }
     }
-
+/*/
     @DeleteMapping("/{loanId}")
     public ResponseEntity<Void> deleteLoan(@PathVariable Long loanId) {
         loanService.deleteLoan(loanId);
         return ResponseEntity.noContent().build();
     }
+    /
+ */
 }

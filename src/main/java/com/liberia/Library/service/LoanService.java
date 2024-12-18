@@ -37,7 +37,7 @@ public class LoanService {
             loan.setMember(member);
             loan.setBook(book);
             loan.setLoanDate(LocalDate.now());
-            loan.setDueDate(LocalDate.now().plusDays(14)); // 14 días de préstamo por defecto
+            loan.setDueDate(LocalDate.now().plusDays(14));
             book.setAvailable(false);
             return loanRepository.save(loan);
         } else {
@@ -49,9 +49,9 @@ public class LoanService {
         Loan loan = loanRepository.findById(loanId)
                 .orElseThrow(() -> new ChangeSetPersister.NotFoundException("Préstamo no encontrado"));
 
-        // Calcular multa si la devolución es tardía
+
         if (LocalDate.now().isAfter(loan.getDueDate())) {
-            // ... Lógica para calcular y aplicar la multa ...
+
         }
 
         loan.setReturnedDate(LocalDate.now());
@@ -59,14 +59,5 @@ public class LoanService {
         loanRepository.save(loan);
     }
 
-    public List<Loan> getAllLoans() {
-        return List.of();
-    }
 
-
-    public Optional<Loan> getLoanById(Long loanId) {
-    }
-
-    public Loan updateLoan(Long loanId, Loan loan) {
-    }
 }
