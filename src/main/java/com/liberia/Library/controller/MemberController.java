@@ -1,7 +1,7 @@
 package com.liberia.Library.controller;
 
 import com.liberia.Library.model.Member;
-import com.liberia.Library.repository.MemberRepository;
+import com.liberia.Library.repository.IMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class MemberController {
 
     @Autowired
-    private MemberRepository memberRepository;
+    private IMemberRepository memberRepository;
 
     @GetMapping
     public List<Member> getAllMembers() {
@@ -60,7 +60,6 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
 
-    // Additional methods (optional):
     @GetMapping("/search")
     public List<Member> searchMembers(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName) {
         if (firstName != null && lastName != null) {

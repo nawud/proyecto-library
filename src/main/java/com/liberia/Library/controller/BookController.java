@@ -35,7 +35,7 @@ public class BookController {
         bookService.deleteBook(id);
     }
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> findBookById(@PathVariable long id){
+    public ResponseEntity<Book> findBookById(@PathVariable Long id){
         Optional<Book> foundBook = bookService.findBook(id);
         if(foundBook.isPresent()){
             return new ResponseEntity<>(foundBook.get(), HttpStatus.FOUND);
