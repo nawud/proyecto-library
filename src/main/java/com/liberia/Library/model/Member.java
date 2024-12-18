@@ -4,9 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
-
+import java.util.List;
 
 @Entity
 @Table(name = "Members")
@@ -36,14 +35,14 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MembershipStatus status;
 
-
+    @OneToMany(mappedBy = "member")
+    private List<Book> books;
 
     public enum MembershipStatus {
         ACTIVE,
         SUSPENDED,
         INACTIVE
     }
-
 
     @Override
     public String toString() {

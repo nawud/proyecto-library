@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name ="Books" )
+@Table(name = "Books")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,6 +19,11 @@ public class Book {
     private String description;
     private String isbn;
     private String genre;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     public Book(Long id, String title, String author, String description, String isbn, String genre) {
         this.id = id;
         this.title = title;
@@ -28,8 +32,4 @@ public class Book {
         this.isbn = isbn;
         this.genre = genre;
     }
-
-
-
-
 }
