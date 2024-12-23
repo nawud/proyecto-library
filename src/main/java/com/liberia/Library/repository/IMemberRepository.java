@@ -8,5 +8,4 @@ import java.util.List;
 public interface IMemberRepository extends JpaRepository<Member, Long> {
     List<Member> findByFirstNameAndLastName(String firstName, String lastName);
     List<Member> findByFirstName(String firstName);
-    List<Member> findByLastName(String lastName);
-}
+    List<Member> findByLastName(String lastName);}

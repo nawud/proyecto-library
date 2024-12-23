@@ -1,7 +1,10 @@
 package com.liberia.Library.service;
+
 import com.liberia.Library.model.Member;
+import com.liberia.Library.model.Member.MembershipStatus;
 import com.liberia.Library.repository.IMemberRepository;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,11 +20,24 @@ public class MemberService {
         return iMemberRepository.findAll();
     }
 
-    public void addMember(Member newMember) {
-        iMemberRepository.save(newMember);
+    public Member addMember(Member newMember) {
+
+        if (newMember.getMembershipDate() == null) {
+            newMember.setMembershipDate(LocalDate.now());
+        }
+
+
+        if (newMember.getStatus() == null) {
+            newMember.setStatus(MembershipStatus.ACTIVE);
+        }
+
+        return iMemberRepository.save(newMember);
     }
 
     public void deleteMember(Long id) {
+        if (!iMemberRepository.existsById(id)) {
+            throw new RuntimeException("Member not found with id: " + id);
+        }
         iMemberRepository.deleteById(id);
     }
 
@@ -43,5 +59,4 @@ public class MemberService {
         }
         throw new RuntimeException("Member not found with id: " + id);
     }
-
 }
