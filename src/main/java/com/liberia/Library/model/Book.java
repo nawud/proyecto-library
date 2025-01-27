@@ -1,9 +1,15 @@
 package com.liberia.Library.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Table(name ="Books" )
+@Table(name = "Books")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,6 +18,11 @@ public class Book {
     private String author;
     private String description;
     private String isbn;
+    private String genre;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public Book(Long id, String title, String author, String description, String isbn, String genre) {
         this.id = id;
@@ -20,65 +31,5 @@ public class Book {
         this.description = description;
         this.isbn = isbn;
         this.genre = genre;
-    }
-
-    private String genre;
-
-    public Book() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public boolean isAvailable() {
-        return false;
-    }
-
-    public void setAvailable(boolean b) {
     }
 }

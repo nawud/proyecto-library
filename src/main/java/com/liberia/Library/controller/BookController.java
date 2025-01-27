@@ -2,7 +2,6 @@ package com.liberia.Library.controller;
 
 import com.liberia.Library.model.Book;
 import com.liberia.Library.service.BookService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +34,7 @@ public class BookController {
         bookService.deleteBook(id);
     }
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> findBookById(@PathVariable long id){
+    public ResponseEntity<Book> findBookById(@PathVariable Long id){
         Optional<Book> foundBook = bookService.findBook(id);
         if(foundBook.isPresent()){
             return new ResponseEntity<>(foundBook.get(), HttpStatus.FOUND);
